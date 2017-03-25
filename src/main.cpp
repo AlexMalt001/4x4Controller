@@ -31,9 +31,6 @@ const int ST_UPPER = 950;
 const int ST_LOWER = 0;
 const int ST_DEADZONE = 20;
 
-
-
-screenLoader loader(0x0000); //creates screenLoader, sets background to black
 pins pins;
 serialProcess io;
 dataProcess data;
@@ -41,13 +38,8 @@ dataProcess data;
 void setup() {
   load::modeSet();
   load::serialSetup();
-  loader.screen.begin();
-  loader.screen.fillScreen(0x0000);
 }
-roundDial dial(loader, "POT1", 20, 20, 50, analogRead(A0), 0, 1024, 0x7BEF, 0x9880, 0xFFFF, 0xFFFF);
+
 void loop() {
-  dial.setValue(analogRead(A0));
-  dial.destroy();
-  dial.draw();
-  delay(150);
+
 }

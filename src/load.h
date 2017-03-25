@@ -1,6 +1,8 @@
 #ifndef load_h
 #define load_h
 
+#include "Arduino.h"
+
 namespace load {
     void modeSet();
     void serialSetup();
