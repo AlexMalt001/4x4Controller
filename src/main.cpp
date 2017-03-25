@@ -9,14 +9,6 @@
 #include "screen.h"
 #include "load.h"
 
-#define BLACK    0x0000
-#define WHITE    0xFFFF
-
-#define TFT_CS 10
-#define TFT_DC 9
-Adafruit_ILI9341 tft = Adafruit_ILI9341(TFT_CS, TFT_DC);
-Adafruit_ILI9341 screenLoader::screen = tft;
-
 int th;
 int st;
 
