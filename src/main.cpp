@@ -21,7 +21,7 @@ int th;
 int st;
 
 const int PWM_UPPER = 200;
-const int PWM_LOWER = 100; 
+const int PWM_LOWER = 100;
 
 const int TH_UPPER = 799;
 const int TH_LOWER = 278;
@@ -34,14 +34,13 @@ const int ST_DEADZONE = 20;
 
 
 screenLoader loader(0x0000); //creates screenLoader, sets background to black
-load load;
 pins pins;
 serialProcess io;
 dataProcess data;
 
 void setup() {
-  load.modeSet();
-  load.serialSetup();
+  load::modeSet();
+  load::serialSetup();
   loader.screen.begin();
   loader.screen.fillScreen(0x0000);
 }
@@ -52,6 +51,3 @@ void loop() {
   dial.draw();
   delay(150);
 }
-
-
-

@@ -1,11 +1,10 @@
 #ifndef load_h
 #define load_h
 
-class load {
-  public:
+namespace load {
     void modeSet();
     void serialSetup();
-};
+}
 
 class pins {
   public:
