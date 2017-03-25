@@ -12,17 +12,13 @@ int dataProcess :: processVars(int input, int upper, int lower, int deadzone, in
   int upperDZ = half + deadzone;
   int lowerDZ = half - deadzone;
 
-  //if(upperDZ > input > lowerDZ) {
-  //  input = half;
-  //}
+  if(upperDZ > input && input > lowerDZ) {
+    input = half;
+  }
+
   int presult = input - lower;
   int presult2 = (presult*100) / (range);
   Serial.println(presult2);
   int result = (presult*(upperPWM-lowerPWM))+lowerPWM;
   return result;
 }
-
-
-
-
-

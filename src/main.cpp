@@ -9,23 +9,14 @@
 #include "screen.h"
 #include "load.h"
 
-int th;
-int st;
-
-const int PWM_UPPER = 200;
-const int PWM_LOWER = 100;
-
-const int TH_UPPER = 799;
-const int TH_LOWER = 278;
-const int TH_DEADZONE = 30;
-
-const int ST_UPPER = 950;
-const int ST_LOWER = 0;
-const int ST_DEADZONE = 20;
-
-pins pins;
 serialProcess io;
 dataProcess data;
+
+using namespace pins;
+using namespace varStore;
+
+int ldrValue;
+bool tiltValue;
 
 void setup() {
   load::modeSet();
@@ -33,5 +24,25 @@ void setup() {
 }
 
 void loop() {
+  int thOut = data.processVars(analogRead(throttle),TH_IN_UPPER,
+      TH_IN_LOWER, TH_DEADZONE, TH_OUT_UPPER, TH_OUT_LOWER);
 
+  int stOut = data.processVars(analogRead(steer), ST_IN_UPPER,
+      ST_IN_LOWER, ST_DEADZONE, ST_OUT_UPPER, ST_OUT_LOWER);
+
+  io.sendVars(thOut, stOut);
+
+  if ((millis() % 50) == 0) {
+      int outArray[1];
+      //int *p =
+    }
+}
+
+void serialEvent() {
+   while (Serial.available()) {
+     tiltValue = Serial.readStringUntil(',').toInt();
+     Serial.read();
+     ldrValue = Serial.readStringUntil(',').toInt();
+     Serial.readStringUntil("/n");
+   }
 }
