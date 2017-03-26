@@ -33,17 +33,28 @@ void loop() {
   io.sendVars(thOut, stOut);
 
   if ((millis() % 50) == 0) {
-      int outArray[1];
-      int *outPtr = &outArray[0];
-      screenDataProcess::prepareScreenData(outPtr);
-    }
+    int outArray[1];
+    int *outPtr;
+    outPtr = &outArray[0];
+    screenDataProcess::prepareScreenData(outPtr);
+  }
 }
 
-void serialEvent() {
+void serialEvent1() {
    while (Serial.available()) {
      tiltValue = Serial.readStringUntil(',').toInt();
      Serial.read();
      ldrValue = Serial.readStringUntil(',').toInt();
      Serial.readStringUntil('\n');
    }
+}
+
+void serialEvent2() {
+  String inString = Serial.readStringUntil('\n');
+
+  if (inString.startsWith("!")) {
+    screenSerialProcess::processCommand(inString);
+  }else {
+    //treat string wierdly
+  }
 }

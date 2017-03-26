@@ -1,6 +1,8 @@
 #ifndef serialProcess_h
 #define serialProcess_h
 
+#include "Arduino.h"
+
 class serialProcess {
 public:
     void sendVars(int th, int st);
@@ -12,11 +14,15 @@ public:
 };
 
 namespace screenDataProcess {
+  static String outputString;
   void prepareScreenData(int *processArray);
+
 }
 
 namespace screenSerialProcess {
   void sendToScreen(int *processArray);
+  void processCommand(String inString);
 }
+
 
 #endif
