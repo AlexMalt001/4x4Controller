@@ -34,7 +34,8 @@ void loop() {
 
   if ((millis() % 50) == 0) {
       int outArray[1];
-      //int *p =
+      int *outPtr = &outArray[0];
+      screenDataProcess::prepareScreenData(outPtr);
     }
 }
 
@@ -43,6 +44,6 @@ void serialEvent() {
      tiltValue = Serial.readStringUntil(',').toInt();
      Serial.read();
      ldrValue = Serial.readStringUntil(',').toInt();
-     Serial.readStringUntil("/n");
+     Serial.readStringUntil('\n');
    }
 }
