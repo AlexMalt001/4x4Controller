@@ -33,6 +33,7 @@ void loop() {
   io.sendVars(thOut, stOut);
 
   if ((millis() % 50) == 0) {
+    screenSerialProcess::sendOutputString();
     int outArray[1];
     int *outPtr;
     outPtr = &outArray[0];
@@ -55,6 +56,6 @@ void serialEvent2() {
   if (inString.startsWith("!")) {
     screenSerialProcess::processCommand(inString);
   }else {
-    //treat string wierdly
+    screenDataProcess::outputString += "!out -ERROR NOT A COMMAND- src -cpumain58:81-,";
   }
 }

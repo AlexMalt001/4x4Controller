@@ -83,7 +83,11 @@ void screenSerialProcess::processCommand(String inString) {
 
   } else {
     //TODO: add command formatter to serial process namespace
-    screenDataProcess::outputString += ",!out -ERROR ILLEGAL COMMAND- src -cpuserproc85:87-";
+    screenDataProcess::outputString += ",!out -ERROR ILLEGAL COMMAND- src -cpuserproc85:87-,";
   }
 
+}
+
+void screenSerialProcess::sendOutputString() {
+  Serial2.println(screenDataProcess::outputString);
 }

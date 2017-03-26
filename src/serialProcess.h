@@ -22,6 +22,7 @@ namespace screenDataProcess {
 namespace screenSerialProcess {
   void sendToScreen(int *processArray);
   void processCommand(String inString);
+  void sendOutputString();
 }
 
 
