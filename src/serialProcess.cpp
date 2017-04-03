@@ -20,7 +20,6 @@ int dataProcess :: processVars(int input, int upper, int lower, int deadzone, in
 
   int presult = input - lower;
   int presult2 = (presult*100) / (range);
-  Serial.println(presult2);
   int result = (presult*(upperPWM-lowerPWM))+lowerPWM;
   return result;
 }
