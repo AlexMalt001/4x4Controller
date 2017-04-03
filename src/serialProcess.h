@@ -10,7 +10,7 @@ public:
 
 class dataProcess {
 public:
-  int processVars(int input, int upper, int lower, int deadzone, int upperPWM, int lowerPWM);
+  int processVars(int input, int upper, int lower, int deadzone, int upperPWM, int lowerPWM, int theoUpper, int theoLower);
 };
 
 namespace screenDataProcess {

@@ -25,10 +25,10 @@ void setup() {
 
 void loop() {
   int thOut = data.processVars(analogRead(throttle),TH_IN_UPPER,
-      TH_IN_LOWER, TH_DEADZONE, TH_OUT_UPPER, TH_OUT_LOWER);
+      TH_IN_LOWER, TH_DEADZONE, TH_OUT_UPPER, TH_OUT_LOWER, TH_OUT_THEO_UPPER, TH_OUT_THEO_LOWER);
   Serial.println("test");
   int stOut = data.processVars(analogRead(steer), ST_IN_UPPER,
-      ST_IN_LOWER, ST_DEADZONE, ST_OUT_UPPER, ST_OUT_LOWER);
+      ST_IN_LOWER, ST_DEADZONE, ST_OUT_UPPER, ST_OUT_LOWER, ST_OUT_THEO_UPPER, ST_OUT_THEO_LOWER);
 
   io.sendVars(thOut, stOut);
 

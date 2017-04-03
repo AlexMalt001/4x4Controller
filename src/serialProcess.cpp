@@ -8,19 +8,18 @@ void serialProcess :: sendVars(int th, int st) {
 }
 
 int dataProcess :: processVars(int input, int upper, int lower, int deadzone, int upperPWM, int lowerPWM, int theoUpper, int theoLower) {
-  //TODO: CHANGE HEADER FOR MAX/MIN VALUES
-  int half = theoLower + (theoUpper - theoLower);
-  if(input > (half-deadzone) && input < (half+deadzone)) {
-    return //TODO ADD HALFPWM;
-  }
-<<<<<<< HEAD
 
-  int presult = input - lower;
-  int presult2 = (presult*100) / (range);
-  int result = (presult*(upperPWM-lowerPWM))+lowerPWM;
-  return result;
-=======
->>>>>>> 064ffe423355d8f2f4903d6375d29c4624572bc8
+  int halfIn = lower + (upper - lower);
+  int halfOut = theoLower + (theoUpper - theoLower);
+  if(input > (halfIn-deadzone) && input < (halfIn+deadzone)) {
+    return halfOut;
+  }
+
+  if (input > halfIn) {
+    return constrain(map(input, halfIn, upper, halfOut, upperPWM), halfOut, upperPWM);
+  } else {
+    return constrain(map(input, lower, halfIn, lowerPWM, halfOut), lowerPWM, halfOut);
+  }
 }
 
 void screenDataProcess::prepareScreenData(int *ptr) {
@@ -81,7 +80,7 @@ void screenSerialProcess::processCommand(String inString) {
 
   } else {
     //TODO: add command formatter to serial process namespace
-    screenDataProcess::outputString += ",!out -ERROR ILLEGAL COMMAND- src -cpuserproc85:87-,";
+    screenDataProcess::outputString += "!out -ERROR ILLEGAL COMMAND- src -cpuserproc85:87-,";
   }
 
 }
