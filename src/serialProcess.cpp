@@ -4,7 +4,7 @@
 #include "load.h"
 
 void serialProcess :: sendVars(int th, int st) {
-//  Serial1.println(st + "," + th);
+  Serial1.println(st + "," + th);
 }
 
 int dataProcess :: processVars(int input, int upper, int lower, int deadzone, int upperPWM, int lowerPWM, int theoUpper, int theoLower) {
@@ -23,7 +23,7 @@ int dataProcess :: processVars(int input, int upper, int lower, int deadzone, in
 }
 
 void screenDataProcess::prepareScreenData(int *ptr) {
-
+  //TODO: ALL THE THINGS
 }
 
 void screenSerialProcess::processCommand(String inString) {
