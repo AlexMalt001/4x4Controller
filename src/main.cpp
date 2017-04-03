@@ -1,8 +1,5 @@
-//include Adafruit libraries for screen
+//include screen lib so i can retain similarity between my repos
 #include <Adafruit_ILI9341.h>
-#include <Adafruit_GFX.h>
-#include <gfxfont.h>
-#include <TouchScreen.h>
 
 //include my external files
 #include "serialProcess.h" //manages serial setup and interface with reciever
