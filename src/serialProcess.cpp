@@ -29,10 +29,20 @@ void screenDataProcess::prepareScreenData(int *ptr) {
 void screenSerialProcess::processCommand(String inString) {
   using namespace varStore;
 
-  //TODO: ADD CODE TO SPLIT STRING INTO COMMAND AND MODIFIER(S)
+  //init vars for components of command
   String command;
   String modifier;
   String value;
+
+  //Split input String into command, modifier and value
+  String workingString = inString;
+  workingString.remove(0); //remove '!'
+  command = workingString.substring(0,inString.indexOf(' ')); // seperate command portion (keyword)
+  workingString.remove(0,inString.indexOf(' ')); //remove command from working String
+  modifier = workingString.substring(0, inString.indexOf(' '));//seperate modifier portion
+  workingString.remove(0,inString.indexOf(' ')); //remove modifier from working String
+  value = workingString;
+
 
   if(command == "!deadzone") {
 
