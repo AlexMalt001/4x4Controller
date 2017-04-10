@@ -3,22 +3,29 @@
 #include "serialProcess.h"
 #include "load.h"
 
+
+
 void serialProcess :: sendVars(int th, int st) {
   Serial1.println(st + "," + th);
+  if (toggles::test == 1) {
+    //Serial.println(th);
+  }
 }
 
 int dataProcess :: processVars(int input, int upper, int lower, int deadzone, int upperPWM, int lowerPWM, int theoUpper, int theoLower) {
 
-  int halfIn = lower + (upper - lower);
-  int halfOut = theoLower + (theoUpper - theoLower);
+  int halfIn = lower + ((upper - lower)/2);
+  int halfPWM = theoLower + ((theoUpper - theoLower)/2);
   if(input > (halfIn-deadzone) && input < (halfIn+deadzone)) {
-    return halfOut;
+    return halfPWM;
   }
 
   if (input > halfIn) {
-    return constrain(map(input, halfIn, upper, halfOut, upperPWM), halfOut, upperPWM);
+    int inputPlusPlus = input + deadzone;
+    Serial.println(String(input) + ", " + String(constrain(map(inputPlusPlus, lower, upper, theoLower, upperPWM), halfPWM, upperPWM)));
+    return constrain(map(input, lower, upper, upperPWM, halfPWM), halfPWM, upperPWM);
   } else {
-    return constrain(map(input, lower, halfIn, lowerPWM, halfOut), lowerPWM, halfOut);
+    return constrain( map(input, lower, upper, lowerPWM, halfPWM) , lowerPWM, halfPWM);
   }
 }
 
