@@ -28,12 +28,12 @@ namespace pins {
 };
 
 namespace varStore {
-  const int ST_OUT_THEO_UPPER = 200;//theoretical upper limits of throttle/steer input
-  const int ST_OUT_THEO_LOWER = 100;
-  static int ST_OUT_UPPER = 200;//constant style caps from old version
-  static int ST_OUT_LOWER = 100;
+  const int ST_OUT_THEO_UPPER = 180;//theoretical upper limits of throttle/steer input
+  const int ST_OUT_THEO_LOWER = 0;
+  static int ST_OUT_UPPER = 180;//constant style caps from old version
+  static int ST_OUT_LOWER = 0;
 
-  const int TH_OUT_THEO_UPPER = 1024; //theoretical upper limits of throttle/steer input
+  const int TH_OUT_THEO_UPPER = 780; //theoretical upper limits of throttle/steer input
   const int TH_OUT_THEO_LOWER = 0;
   static int TH_OUT_UPPER = 780;//constant style caps from old version
   static int TH_OUT_LOWER = 0;
@@ -43,8 +43,8 @@ namespace varStore {
   static int TH_DEADZONE = 30;//stored on analog side (1/1024)ths
 
   static bool stInvert;
-  const int ST_IN_UPPER = 180;
-  const int ST_IN_LOWER = 0;
+  const int ST_IN_UPPER = 930;
+  const int ST_IN_LOWER = 28;
   static int ST_DEADZONE = 20; //stored on analog side (1/1024)ths
 }
 

@@ -33,9 +33,9 @@ void loop() {
       TH_IN_LOWER, TH_DEADZONE, TH_OUT_UPPER, TH_OUT_LOWER, TH_OUT_THEO_UPPER, TH_OUT_THEO_LOWER);
 
   //processes data to be output to steering servo
-  //int stOut = data.processVars(analogRead(steer), ST_IN_UPPER,
-  //    ST_IN_LOWER, ST_DEADZONE, ST_OUT_UPPER, ST_OUT_LOWER, ST_OUT_THEO_UPPER, ST_OUT_THEO_LOWER);
-  int stOut = 0;
+  int stOut = data.processVars(analogRead(steer), ST_IN_UPPER,
+      ST_IN_LOWER, ST_DEADZONE, ST_OUT_UPPER, ST_OUT_LOWER, ST_OUT_THEO_UPPER, ST_OUT_THEO_LOWER);
+
   io.sendVars(thOut, stOut); //sends vars to reciever
 
   if ((millis() % 50) == 0) { //sends data to screen every 50ms
@@ -49,7 +49,7 @@ void loop() {
     screenDataProcess::prepareScreenData(outPtr); //prepares telemetry data to be sent to screen
   }
   if(toggles::test == true) {
-    delay(100);
+    //delay(100);
   }
 }
 

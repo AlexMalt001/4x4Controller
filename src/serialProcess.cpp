@@ -6,9 +6,9 @@
 
 
 void serialProcess :: sendVars(int th, int st) {
-  Serial1.println(st + "," + th);
+  Serial1.println(String(st) + "," + String(th));
   if (toggles::test == 1) {
-    //Serial.println(th);
+    Serial.println(String(st) + ", " + String(th));
   }
 }
 
@@ -21,11 +21,9 @@ int dataProcess :: processVars(int input, int upper, int lower, int deadzone, in
   }
 
   if (input > halfIn) {
-    int inputPlusPlus = input + deadzone;
-    Serial.println(String(input) + ", " + String(constrain(map(inputPlusPlus, lower, upper, theoLower, upperPWM), halfPWM, upperPWM)));
-    return constrain(map(input, lower, upper, upperPWM, halfPWM), halfPWM, upperPWM);
+    return constrain(map(input, halfIn+deadzone, upper, halfPWM, upperPWM), halfPWM, upperPWM);
   } else {
-    return constrain( map(input, lower, upper, lowerPWM, halfPWM) , lowerPWM, halfPWM);
+    return constrain(map(input, lower, halfIn-deadzone, lowerPWM, halfPWM), lowerPWM, halfPWM);
   }
 }
 
